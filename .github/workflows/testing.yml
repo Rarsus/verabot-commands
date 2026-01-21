@@ -167,7 +167,7 @@ jobs:
 
       - name: 📊 Verify coverage thresholds
         run: |
-          npm run test -- --coverage --silent > /dev/null 2>&1 || true
+          npm run test -- --coverage
           
           # Check if coverage file exists
           if [ ! -f coverage/coverage-summary.json ]; then
