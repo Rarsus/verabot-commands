@@ -1,7 +1,7 @@
-const Command = require('../../../src/core/CommandBase');
-const buildCommandOptions = require('../../../src/core/CommandOptions');
-const { sendError, sendDM } = require('../../../src/utils/helpers/response-helpers');
-const quoteService = require('../../../src/services/QuoteService');
+const Command = require('verabot-core/core/CommandBase');
+const buildCommandOptions = require('verabot-core/core/CommandOptions');
+const { sendError, sendDM } = require('verabot-core/helpers/response-helpers');
+const quoteService = require('verabot-utils/services/QuoteService');
 
 const { data, options } = buildCommandOptions('list-quotes', 'Get a list of all quotes in a private message', []);
 

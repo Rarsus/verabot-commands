@@ -1,7 +1,7 @@
-const Command = require('../../../src/core/CommandBase');
-const buildCommandOptions = require('../../../src/core/CommandOptions');
-const { sendSuccess, sendError } = require('../../../src/utils/helpers/response-helpers');
-const quoteService = require('../../../src/services/QuoteService');
+const Command = require('verabot-core/core/CommandBase');
+const buildCommandOptions = require('verabot-core/core/CommandOptions');
+const { sendSuccess, sendError } = require('verabot-core/helpers/response-helpers');
+const quoteService = require('verabot-utils/services/QuoteService');
 
 const { data, options } = buildCommandOptions('tag-quote', 'Add a tag to a quote', [
   { name: 'id', type: 'integer', description: 'Quote ID to tag', required: true },

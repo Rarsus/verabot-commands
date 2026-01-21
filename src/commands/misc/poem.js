@@ -1,5 +1,5 @@
-const Command = require('../../../src/core/CommandBase');
-const buildCommandOptions = require('../../../src/core/CommandOptions');
+const Command = require('verabot-core/core/CommandBase');
+const buildCommandOptions = require('verabot-core/core/CommandOptions');
 const { SlashCommandBuilder } = require('discord.js');
 const fetch = require('node-fetch');
 

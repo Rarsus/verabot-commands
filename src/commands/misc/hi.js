@@ -1,5 +1,5 @@
-const Command = require('../../../src/core/CommandBase');
-const buildCommandOptions = require('../../../src/core/CommandOptions');
+const Command = require('verabot-core/core/CommandBase');
+const buildCommandOptions = require('verabot-core/core/CommandOptions');
 
 const { data, options } = buildCommandOptions('hi', 'Say hi to someone', [
   { name: 'name', type: 'string', description: 'Name to say hi to', required: false },

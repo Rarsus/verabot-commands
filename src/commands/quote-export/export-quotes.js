@@ -1,7 +1,7 @@
-const Command = require('../../../src/core/CommandBase');
-const buildCommandOptions = require('../../../src/core/CommandOptions');
-const { sendError } = require('../../../src/utils/helpers/response-helpers');
-const quoteService = require('../../../src/services/QuoteService');
+const Command = require('verabot-core/core/CommandBase');
+const buildCommandOptions = require('verabot-core/core/CommandOptions');
+const { sendError } = require('verabot-core/helpers/response-helpers');
+const quoteService = require('verabot-utils/services/QuoteService');
 const { AttachmentBuilder } = require('discord.js');
 
 const { data, options } = buildCommandOptions('export-quotes', 'Export quotes as JSON or CSV file', [

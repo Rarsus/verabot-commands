@@ -1,6 +1,6 @@
-const Command = require('../../../src/core/CommandBase');
-const buildCommandOptions = require('../../../src/core/CommandOptions');
-const { sendSuccess } = require('../../../src/utils/helpers/response-helpers');
+const Command = require('verabot-core/core/CommandBase');
+const buildCommandOptions = require('verabot-core/core/CommandOptions');
+const { sendSuccess } = require('verabot-core/helpers/response-helpers');
 
 const { data, options } = buildCommandOptions('ping', 'Simple ping command', []);
 

@@ -1,7 +1,7 @@
-const Command = require('../../../src/core/CommandBase');
-const buildCommandOptions = require('../../../src/core/CommandOptions');
-const { sendError } = require('../../../src/utils/helpers/response-helpers');
-const quoteService = require('../../../src/services/QuoteService');
+const Command = require('verabot-core/core/CommandBase');
+const buildCommandOptions = require('verabot-core/core/CommandOptions');
+const { sendError } = require('verabot-core/helpers/response-helpers');
+const quoteService = require('verabot-utils/services/QuoteService');
 const { EmbedBuilder } = require('discord.js');
 
 const { data, options } = buildCommandOptions('quote-stats', 'Get statistics about the quote database', []);

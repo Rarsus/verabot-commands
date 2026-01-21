@@ -1,6 +1,6 @@
-const Command = require('../../../src/core/CommandBase');
-const buildCommandOptions = require('../../../src/core/CommandOptions');
-const RolePermissionService = require('../../../src/services/RolePermissionService');
+const Command = require('verabot-core/core/CommandBase');
+const buildCommandOptions = require('verabot-core/core/CommandOptions');
+const RolePermissionService = require('verabot-utils/services/RolePermissionService');
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
 function formatUsage(cmd, prefix = '!') {

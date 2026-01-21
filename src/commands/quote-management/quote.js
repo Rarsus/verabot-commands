@@ -1,8 +1,8 @@
-const Command = require('../../../src/core/CommandBase');
-const buildCommandOptions = require('../../../src/core/CommandOptions');
-const { sendError } = require('../../../src/utils/helpers/response-helpers');
-const quoteService = require('../../../src/services/QuoteService');
-const { validateQuoteNumber } = require('../../../src/middleware/errorHandler');
+const Command = require('verabot-core/core/CommandBase');
+const buildCommandOptions = require('verabot-core/core/CommandOptions');
+const { sendError } = require('verabot-core/helpers/response-helpers');
+const quoteService = require('verabot-utils/services/QuoteService');
+const { validateQuoteNumber } = require('verabot-utils/middleware/errorHandler');
 
 const { data, options } = buildCommandOptions('quote', 'Retrieve a quote from the database by number', [
   { name: 'number', type: 'integer', description: 'Quote number', required: true },
