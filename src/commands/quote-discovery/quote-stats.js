@@ -48,7 +48,7 @@ class QuoteStatsCommand extends Command {
           { name: 'Total Quotes', value: `${totalQuotes}`, inline: true },
           { name: 'Unique Authors', value: `${Object.keys(authors).length}`, inline: true },
           { name: 'Top Author', value: `${topAuthor[0]} (${topAuthor[1]} quotes)`, inline: true },
-          { name: 'Average Quote Length', value: `${avgLength} characters`, inline: true }
+          { name: 'Average Quote Length', value: `${avgLength} characters`, inline: true },
         )
         .setColor(0x5865f2);
 
@@ -91,7 +91,7 @@ class QuoteStatsCommand extends Command {
         { name: 'Total Quotes', value: `${totalQuotes}`, inline: true },
         { name: 'Unique Authors', value: `${Object.keys(authors).length}`, inline: true },
         { name: 'Top Author', value: `${topAuthor[0]} (${topAuthor[1]} quotes)`, inline: true },
-        { name: 'Average Quote Length', value: `${avgLength} characters`, inline: true }
+        { name: 'Average Quote Length', value: `${avgLength} characters`, inline: true },
       )
       .setColor(0x5865f2);
 

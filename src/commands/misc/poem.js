@@ -13,7 +13,7 @@ function capitalize(s) {
 
 async function generateAIPoem(subject, style = 'sonnet') {
   const apiKey = process.env.HUGGINGFACE_API_KEY;
-  if (!apiKey) return null;
+  if (!apiKey) {return null;}
 
   try {
     const prompt = `Generate a ${style} about ${subject}. Only output the poem, no explanation.`;
@@ -77,15 +77,15 @@ function generateOther(subject) {
 
 function generatePoem(type, subject) {
   subject = (subject || 'the world').trim();
-  if (!subject) subject = 'the world';
+  if (!subject) {subject = 'the world';}
   switch ((type || 'sonnet').toLowerCase()) {
-    case 'haiku':
-      return generateHaiku(subject);
-    case 'other':
-      return generateOther(subject);
-    case 'sonnet':
-    default:
-      return generateSonnet(subject);
+  case 'haiku':
+    return generateHaiku(subject);
+  case 'other':
+    return generateOther(subject);
+  case 'sonnet':
+  default:
+    return generateSonnet(subject);
   }
 }
 

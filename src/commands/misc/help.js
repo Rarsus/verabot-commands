@@ -34,8 +34,8 @@ class HelpCommand extends Command {
           .setTitle('Available commands')
           .setDescription('No commands available.')
           .setColor(0x00ae86);
-        if (message.channel && typeof message.channel.send === 'function') return message.channel.send({ embeds: [e] });
-        if (message.reply) return message.reply({ embeds: [e] });
+        if (message.channel && typeof message.channel.send === 'function') {return message.channel.send({ embeds: [e] });}
+        if (message.reply) {return message.reply({ embeds: [e] });}
         return;
       }
 
@@ -59,7 +59,7 @@ class HelpCommand extends Command {
             .setLabel('Next')
             .setStyle(ButtonStyle.Primary)
             .setDisabled(pageIndex === pages.length - 1),
-          new ButtonBuilder().setCustomId('close').setLabel('Close').setStyle(ButtonStyle.Danger)
+          new ButtonBuilder().setCustomId('close').setLabel('Close').setStyle(ButtonStyle.Danger),
         );
 
       let sentMessage;
@@ -73,7 +73,7 @@ class HelpCommand extends Command {
         }
       }
 
-      if (!sentMessage) return;
+      if (!sentMessage) {return;}
 
       const filter = (i) => i.user.id === (message.author && message.author.id);
       const collector = sentMessage.createMessageComponentCollector({ filter, time: 120000 });
@@ -142,7 +142,7 @@ class HelpCommand extends Command {
           .addFields(
             { name: 'Slash usage', value: usage.slash, inline: false },
             { name: 'Message usage', value: usage.message, inline: false },
-            { name: 'Your role', value: tierDesc, inline: false }
+            { name: 'Your role', value: tierDesc, inline: false },
           )
           .setColor(0x00ae86);
 
@@ -185,7 +185,7 @@ class HelpCommand extends Command {
             .setTitle('Available commands')
             .setDescription(desc)
             .setFooter({ text: `Role: ${RolePermissionService.getRoleDescription(userTier)}` })
-            .setColor(0x00ae86)
+            .setColor(0x00ae86),
         );
       }
 
@@ -201,7 +201,7 @@ class HelpCommand extends Command {
             .setLabel('Next')
             .setStyle(ButtonStyle.Primary)
             .setDisabled(pageIndex === pages.length - 1),
-          new ButtonBuilder().setCustomId('close').setLabel('Close').setStyle(ButtonStyle.Danger)
+          new ButtonBuilder().setCustomId('close').setLabel('Close').setStyle(ButtonStyle.Danger),
         );
 
       const reply = await interaction

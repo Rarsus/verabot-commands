@@ -37,7 +37,7 @@ class SearchQuotesCommand extends Command {
 
       const quotes = await quoteService.getAllQuotes(guildId);
       const results = quotes.filter(
-        (q) => q.text.toLowerCase().includes(query) || q.author.toLowerCase().includes(query)
+        (q) => q.text.toLowerCase().includes(query) || q.author.toLowerCase().includes(query),
       );
 
       if (results.length === 0) {
@@ -55,7 +55,7 @@ class SearchQuotesCommand extends Command {
           results
             .slice(0, 5)
             .map((q) => `**#${q.id}**: "${q.text}" — ${q.author}`)
-            .join('\n\n')
+            .join('\n\n'),
         )
         .setFooter({ text: results.length > 5 ? `... and ${results.length - 5} more` : '' })
         .setColor(0x5865f2);
@@ -82,7 +82,7 @@ class SearchQuotesCommand extends Command {
 
     const quotes = await quoteService.getAllQuotes(guildId);
     const results = quotes.filter(
-      (q) => q.text.toLowerCase().includes(query) || q.author.toLowerCase().includes(query)
+      (q) => q.text.toLowerCase().includes(query) || q.author.toLowerCase().includes(query),
     );
 
     if (results.length === 0) {
@@ -96,7 +96,7 @@ class SearchQuotesCommand extends Command {
         results
           .slice(0, 5)
           .map((q) => `**#${q.id}**: "${q.text}" — ${q.author}`)
-          .join('\n\n')
+          .join('\n\n'),
       )
       .setFooter({ text: results.length > 5 ? `... and ${results.length - 5} more` : '' })
       .setColor(0x5865f2);

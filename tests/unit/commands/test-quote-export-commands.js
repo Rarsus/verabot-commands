@@ -42,8 +42,8 @@ describe('Quote Export Command', () => {
         guildId: 'test-guild',
         options: {
           getString: (name) => {
-            if (name === 'format') return 'json';
-            if (name === 'author') return 'Shakespeare';
+            if (name === 'format') {return 'json';}
+            if (name === 'author') {return 'Shakespeare';}
             return null;
           },
         },
@@ -60,9 +60,9 @@ describe('Quote Export Command', () => {
         guildId: 'test-guild',
         options: {
           getString: (name) => {
-            if (name === 'format') return 'json';
-            if (name === 'start-date') return '2025-01-01';
-            if (name === 'end-date') return '2025-12-31';
+            if (name === 'format') {return 'json';}
+            if (name === 'start-date') {return '2025-01-01';}
+            if (name === 'end-date') {return '2025-12-31';}
             return null;
           },
         },

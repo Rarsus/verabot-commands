@@ -1,7 +1,7 @@
 /**
  * VeraBot Commands Module
  * Entry point for the commands module
- * 
+ *
  * @module commands
  */
 

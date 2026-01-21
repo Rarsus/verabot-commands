@@ -20,7 +20,7 @@ class CommandRegistry {
   registerCommand(category, command) {
     if (!this.commands.has(command.name)) {
       this.commands.set(command.name, { ...command, category });
-      
+
       if (!this.categorizedCommands[category]) {
         this.categorizedCommands[category] = [];
       }
@@ -83,11 +83,11 @@ class CommandRegistry {
       }
 
       const files = fs.readdirSync(directory).filter(file => file.endsWith('.js'));
-      
+
       files.forEach(file => {
         const filePath = path.join(directory, file);
         try {
-          // eslint-disable-next-line global-require, import/no-dynamic-require
+          // eslint-disable-next-line import/no-dynamic-require
           const command = require(filePath);
           if (command && command.name) {
             this.registerCommand(category, command);
@@ -114,7 +114,7 @@ class CommandRegistry {
     ];
 
     const commandsDir = path.join(__dirname, 'commands');
-    
+
     categories.forEach(({ path: categoryPath, name }) => {
       this.loadCommandsFromDirectory(path.join(commandsDir, categoryPath), name);
     });
