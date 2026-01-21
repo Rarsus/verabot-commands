@@ -42,7 +42,17 @@
       {
         "npmPublish": true,
         "tarballDir": "dist",
-        "pkgRoot": "."
+        "pkgRoot": ".",
+        "registry": "https://npm.pkg.github.com"
+      }
+    ],
+    [
+      "@semantic-release/npm",
+      {
+        "npmPublish": true,
+        "tarballDir": "dist",
+        "pkgRoot": ".",
+        "registry": "https://registry.npmjs.org"
       }
     ],
     [
