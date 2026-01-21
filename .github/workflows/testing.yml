@@ -39,11 +39,23 @@ jobs:
 
       - name: 🔗 Link sibling modules
         run: |
-          # Copy sibling modules to the expected location
-          mkdir -p ../verabot-core ../verabot-utils ../verabot-dashboard
-          cp -r parent-repo/repos/verabot-core/* ../verabot-core/ 2>/dev/null || true
-          cp -r parent-repo/repos/verabot-utils/* ../verabot-utils/ 2>/dev/null || true
-          cp -r parent-repo/repos/verabot-dashboard/* ../verabot-dashboard/ 2>/dev/null || true
+          WORK_DIR=$(pwd)
+          PARENT_DIR=$(dirname "$WORK_DIR")
+          echo "Working directory: $WORK_DIR"
+          echo "Parent directory: $PARENT_DIR"
+          
+          # Copy each sibling module
+          for MODULE in verabot-core verabot-utils verabot-dashboard verabot-commands; do
+            if [ -d "parent-repo/repos/$MODULE" ]; then
+              echo "Setting up $MODULE..."
+              rm -rf "$PARENT_DIR/$MODULE"
+              cp -r "parent-repo/repos/$MODULE" "$PARENT_DIR/"
+              echo "✓ $MODULE linked"
+            fi
+          done
+          
+          echo "Verifying structure:"
+          ls -la "$PARENT_DIR" | grep verabot || echo "Warning: No verabot directories found"
 
       - name: 📦 Setup Node.js 20.x
         uses: actions/setup-node@v4
