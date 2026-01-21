@@ -37,14 +37,11 @@ jobs:
 
       - name: 🧪 Run unit tests
         id: test
+        env:
+          CI: true
+          GITHUB_ACTIONS: true
         run: |
-          npm run test -- \
-            --coverage \
-            --collectCoverageFrom='src/**/*.js' \
-            --collectCoverageFrom='!src/**/*.test.js' \
-            --json \
-            --outputFile=test-results-node20.json \
-            2>&1 | tee test-output-node20.txt
+          npm run test -- --coverage 2>&1 | tee test-output-node20.txt
           
           TEST_EXIT_CODE=$?
           echo "exit_code=${TEST_EXIT_CODE}" >> $GITHUB_OUTPUT
@@ -56,6 +53,21 @@ jobs:
           echo "failed=${FAIL_COUNT}" >> $GITHUB_OUTPUT
           
           exit 0
+
+      - name: 🔍 Debug coverage files
+        if: always()
+        run: |
+          echo "=== Coverage Directory Contents ==="
+          ls -la coverage/ 2>/dev/null || echo "❌ No coverage directory found"
+          
+          echo ""
+          echo "=== Checking for coverage-final.json ==="
+          if [ -f coverage/coverage-final.json ]; then
+            echo "✅ coverage-final.json found"
+            echo "File size: $(wc -c < coverage/coverage-final.json) bytes"
+          else
+            echo "❌ coverage-final.json NOT found"
+          fi
 
       - name: 📊 Upload coverage
         uses: codecov/codecov-action@v3
@@ -90,14 +102,11 @@ jobs:
 
       - name: 🧪 Run unit tests
         id: test
+        env:
+          CI: true
+          GITHUB_ACTIONS: true
         run: |
-          npm run test -- \
-            --coverage \
-            --collectCoverageFrom='src/**/*.js' \
-            --collectCoverageFrom='!src/**/*.test.js' \
-            --json \
-            --outputFile=test-results-node22.json \
-            2>&1 | tee test-output-node22.txt
+          npm run test -- --coverage 2>&1 | tee test-output-node22.txt
           
           TEST_EXIT_CODE=$?
           echo "exit_code=${TEST_EXIT_CODE}" >> $GITHUB_OUTPUT
@@ -109,6 +118,21 @@ jobs:
           echo "failed=${FAIL_COUNT}" >> $GITHUB_OUTPUT
           
           exit 0
+
+      - name: 🔍 Debug coverage files
+        if: always()
+        run: |
+          echo "=== Coverage Directory Contents ==="
+          ls -la coverage/ 2>/dev/null || echo "❌ No coverage directory found"
+          
+          echo ""
+          echo "=== Checking for coverage-final.json ==="
+          if [ -f coverage/coverage-final.json ]; then
+            echo "✅ coverage-final.json found"
+            echo "File size: $(wc -c < coverage/coverage-final.json) bytes"
+          else
+            echo "❌ coverage-final.json NOT found"
+          fi
 
       - name: 📊 Upload coverage
         uses: codecov/codecov-action@v3

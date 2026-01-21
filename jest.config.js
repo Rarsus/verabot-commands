@@ -8,6 +8,9 @@ module.exports = {
     '!src/**/index.js',
     '!src/**/*.js.old',
   ],
+  coverageDirectory: 'coverage',
+  coverageReporters: ['json', 'lcov', 'text', 'text-summary'],
+  collectCoverage: process.env.CI === 'true' || process.env.GITHUB_ACTIONS === 'true',
   coverageThreshold: {
     global: {
       branches: 70,
