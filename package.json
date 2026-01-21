@@ -21,8 +21,8 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^14.11.0",
-    "verabot-core": "^1.0.0",
-    "verabot-utils": "^1.0.0"
+    "verabot-core": "file:../verabot-core",
+    "verabot-utils": "file:../verabot-utils"
   },
   "devDependencies": {
     "eslint": "^8.48.0",
