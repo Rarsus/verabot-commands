@@ -1,0 +1,82 @@
+const Command = require('../../../src/core/CommandBase');
+const buildCommandOptions = require('../../../src/core/CommandOptions');
+const { sendError } = require('../../../src/utils/helpers/response-helpers');
+const quoteService = require('../../../src/services/QuoteService');
+const { validateQuoteNumber } = require('../../../src/middleware/errorHandler');
+
+const { data, options } = buildCommandOptions('quote', 'Retrieve a quote from the database by number', [
+  { name: 'number', type: 'integer', description: 'Quote number', required: true },
+]);
+
+class QuoteCommand extends Command {
+  constructor() {
+    super({
+      name: 'quote',
+      description: 'Retrieve a quote from the database by number',
+      data,
+      options,
+      permissions: {
+        minTier: 0,
+        visible: true,
+      },
+    });
+  }
+
+  async execute(message, args) {
+    try {
+      const guildId = message.guildId;
+      const number = parseInt(args[0], 10);
+      const allQuotes = await quoteService.getAllQuotes(guildId);
+      const validation = validateQuoteNumber(number, allQuotes.length);
+
+      if (!validation.valid) {
+        if (message.channel && typeof message.channel.send === 'function') {
+          await message.channel.send(`❌ ${validation.error}`);
+        } else if (message.reply) {
+          await message.reply(`❌ ${validation.error}`);
+        }
+        return;
+      }
+
+      const quote = await quoteService.getQuoteById(guildId, number);
+      if (!quote) {
+        if (message.channel && typeof message.channel.send === 'function') {
+          await message.channel.send(`❌ Quote #${number} not found.`);
+        } else if (message.reply) {
+          await message.reply(`❌ Quote #${number} not found.`);
+        }
+        return;
+      }
+
+      if (message.channel && typeof message.channel.send === 'function') {
+        await message.channel.send(`> ${quote.text}\n— ${quote.author}`);
+      } else if (message.reply) {
+        await message.reply(`> ${quote.text}\n— ${quote.author}`);
+      }
+    } catch (err) {
+      console.error('Quote command error', err);
+    }
+  }
+
+  async executeInteraction(interaction) {
+    const guildId = interaction.guildId;
+    const number = interaction.options.getInteger('number');
+    const allQuotes = await quoteService.getAllQuotes(guildId);
+    const validation = validateQuoteNumber(number, allQuotes.length);
+
+    if (!validation.valid) {
+      await sendError(interaction, validation.error, true);
+      return;
+    }
+
+    const quote = await quoteService.getQuoteById(guildId, number);
+    if (!quote) {
+      await sendError(interaction, `Quote #${number} not found`, true);
+      return;
+    }
+
+    await interaction.reply(`> ${quote.text}\n— ${quote.author}`);
+  }
+}
+
+module.exports = new QuoteCommand().register();
