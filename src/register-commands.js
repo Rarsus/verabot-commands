@@ -87,7 +87,6 @@ class CommandRegistry {
       files.forEach(file => {
         const filePath = path.join(directory, file);
         try {
-          // eslint-disable-next-line import/no-dynamic-require
           const command = require(filePath);
           if (command && command.name) {
             this.registerCommand(category, command);
