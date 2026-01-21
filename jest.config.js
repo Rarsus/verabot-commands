@@ -10,6 +10,11 @@ module.exports = {
   ],
   coverageDirectory: 'coverage',
   coverageReporters: ['json', 'lcov', 'text', 'text-summary'],
+  moduleNameMapper: {
+    '^verabot-utils/(.*)$': '<rootDir>/../verabot-utils/src/$1',
+    '^verabot-core/(.*)$': '<rootDir>/../verabot-core/src/$1',
+    '^verabot-commands/(.*)$': '<rootDir>/src/$1',
+  },
   collectCoverage: process.env.CI === 'true' || process.env.GITHUB_ACTIONS === 'true',
   coverageThreshold: {
     global: {
